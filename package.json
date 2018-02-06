@@ -1,0 +1,34 @@
+{
+  "name": "travelist-mern-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.17.1",
+    "babel-cli": "^6.26.0",
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "es2015": "0.0.0",
+    "express": "^4.16.2",
+    "faker": "^4.1.0",
+    "mongoose": "^5.0.3",
+    "morgan": "^1.9.0",
+    "nodemon": "^1.14.12",
+    "react": "^16.2.0",
+    "react-bootstrap": "^0.32.1",
+    "react-dom": "^16.2.0",
+    "react-modal": "^3.1.12",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "^1.1.0",
+    "semantic-ui-react": "^0.78.1",
+    "webpack": "^3.10.0"
+  },
+  "scripts": {
+    "webpack": "webpack",
+    "start": "npm run webpack && nodemon --exec babel-node -- bin/www",
+    "dev": "nodemon --ignore './public/' ./bin/www & nodemon --ignore './public/' --exec 'yarn webpack'"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1"
+  }
+}

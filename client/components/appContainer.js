@@ -3,6 +3,7 @@ import Header from './Header';
 import axios from "axios";
 import TestForm from './TestForm';
 import ListSidebar from './ListSidebar';
+import Geolocation from './Geolocation';
 
 class App extends Component {
     state = {
@@ -23,7 +24,7 @@ class App extends Component {
 
     fetchTravelList = () => {
         axios.get("/getAll")
-            .then( res => console.log(res))
+            .then( res => this.setState({ travelList:res.data }))
             .catch(err => console.log(err));
     };
 
@@ -31,9 +32,10 @@ class App extends Component {
         return (
             <div>
                 <Header/>
-                <ListSidebar
-                    travelList={this.state.travelList}
-                />
+                <Geolocation/>
+                {/*<ListSidebar*/}
+                    {/*travelList={this.state.travelList}*/}
+                {/*/>*/}
                 {/*<TestForm*/}
                 {/*listTitle={this.state.listTitle}*/}
                 {/*listDesc={this.state.listDesc}*/}

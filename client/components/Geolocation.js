@@ -13,7 +13,7 @@ class Geolocation extends React.Component {
             <div>
                 <Geosuggest
                     ref={el=>this._geoSuggest=el}
-                    placeholder="Start typing!"
+                    placeholder="Search location..."
                     onSuggestSelect={this.props.fetchLocationDetails}
                     location={new google.maps.LatLng(53.558572, 9.9278215)}
                     radius="20" />

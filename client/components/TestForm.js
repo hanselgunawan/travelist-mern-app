@@ -66,13 +66,22 @@ const TestForm = props =>
                                     value={props.listTitle}
                                     onChange={props.handleInputChange}
                                 />
+                                <Input
+                                    size='large'
+                                    icon='edit'
+                                    placeholder='List Subtitle'
+                                    fluid='true'
+                                    name='listSubtitle'
+                                    value={props.listSubtitle}
+                                    onChange={props.handleInputChange}
+                                />
                             </span></h3>
                         </header>
                         <div className='excerpt'>
                             <Form>
                                 <TextArea
                                     autoHeight
-                                    name="listDesc"
+                                    name="listDescription"
                                     value={props.listDesc}
                                     onChange={props.handleInputChange}
                                     icon="edit"
@@ -94,6 +103,7 @@ const TestForm = props =>
                 </div>
             </div>
         </div>
+        <button className="btn btn-success" onClick={props.insertNewCard.bind(null,"5a7c0d78966c124ef97d5bf1")}>Submit</button>
     </div>
 
 export default TestForm;

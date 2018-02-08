@@ -1,25 +1,35 @@
 var express = require('express');
 var router = express.Router();
+var mongojs = require("mongojs");
 var travel = require('../../models/TravelList');
 
 router.get('/', function(req, res){
     res.render('index')
 });
 
-router.route('/insert').post(function (req, res) {
-    let nyt = new travel();
-    nyt.headline = req.body.headline;
-    nyt.web_url = req.body.web_url;
-    nyt.saved_date = req.body.saved_date;
-
-    travel.find({headline: req.body.headline}, function (error, result) {
-        if(!result.length)
-        {
-            nyt.save(function (err) {
-                if(err) res.send(err);
-                res.send('Article successfully added!');
-            });
-        }
+router.route('/insert/:key').post(function (req, res) {
+    let listID = req.params.key;
+    const doc = {
+        mylist:listID,
+        title:req.body.title,
+        subtitle:req.body.subtitle,
+        description:req.body.description,
+        img:req.body.img,
+        tags:req.body.tags,
+        userID:req.body.userID,
+        userName:req.body.userName,
+        userIcon:req.body.userIcon,
+        publishedDate:req.body.publishedDate,
+        lastUpdated:req.body.lastUpdated,
+        listCategory:req.body.listCategory,
+        listIcon:req.body.listIcon,
+        places:req.body.places
+    };
+    console.log(doc);
+    let ObjectId = mongojs.ObjectID;
+    travel.update({_id: ObjectId(listID)}, doc, function (err,result) {
+        if(err)res.send(err);
+        res.send('Draw successfully edited!');
     });
 });
 

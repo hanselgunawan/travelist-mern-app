@@ -5,7 +5,7 @@ import Geolocation from './Geolocation';
 
 class App extends Component {
     state = {
-        places:[],
+        places:{},
         travelList:[]
     };
 
@@ -36,7 +36,10 @@ class App extends Component {
                     'Access-Control-Allow-Origin': '*',
                 }
             })
-            .then(res => console.log(res))
+            .then(res => {
+                this.setState({places:res.data.result});
+                console.log(this.state.places);
+            })
             .catch(err => console.log(err));
         }
     };

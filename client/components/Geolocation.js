@@ -14,7 +14,6 @@ class Geolocation extends React.Component {
                 <Geosuggest
                     ref={el=>this._geoSuggest=el}
                     placeholder="Start typing!"
-                    initialValue="Hamburg"
                     onSuggestSelect={this.props.fetchLocationDetails}
                     location={new google.maps.LatLng(53.558572, 9.9278215)}
                     radius="20" />

@@ -5,7 +5,7 @@ import Geolocation from './Geolocation';
 
 class App extends Component {
     state = {
-        places:{},
+        places:[],
         travelList:[]
     };
 
@@ -38,7 +38,6 @@ class App extends Component {
             })
             .then(res => {
                 this.setState({places:res.data.result});
-                console.log(this.state.places);
             })
             .catch(err => console.log(err));
         }

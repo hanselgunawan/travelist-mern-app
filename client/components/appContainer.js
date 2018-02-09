@@ -3,6 +3,8 @@ import Header from './Header';
 import axios from "axios";
 import Geolocation from './Geolocation';
 import TestForm from './TestForm';
+import Add from './Add';
+import Edit from './Edit';
 var querystring = require('querystring');
 
 class App extends Component {
@@ -11,7 +13,7 @@ class App extends Component {
         listSubtitle:"",
         listDescription:"",
         places:[],
-        travelList:[]
+        travelList:{}
     };
 
     componentDidMount() {
@@ -52,9 +54,9 @@ class App extends Component {
         }
     };
 
-    insertNewCard = key => {
+    updateCard = key => {
         let myDate = new Date();
-        axios.post("/insert/" + key,
+        axios.post("/update/" + key,
             JSON.stringify({
                 title: this.state.listTitle,
                 subtitle: this.state.listSubtitle,
@@ -92,20 +94,22 @@ class App extends Component {
     render() {
         return (
             <div>
-                <Header/>
-                <Geolocation
-                    fetchLocationDetails={this.fetchLocationDetails}
-                />
+                <Edit />
+                {/*<Add />*/}
+                {/*<Header/>*/}
+                {/*<Geolocation*/}
+                    {/*fetchLocationDetails={this.fetchLocationDetails}*/}
+                {/*/>*/}
                 {/*<ListSidebar*/}
                     {/*travelList={this.state.travelList}*/}
                 {/*/>*/}
-                <TestForm
-                    listTitle={this.state.listTitle}
-                    listSubtitle={this.state.listSubtitle}
-                    listDesc={this.state.listDescription}
-                    handleInputChange={this.handleInputChange}
-                    insertNewCard={this.insertNewCard}
-                />
+                {/*<TestForm*/}
+                    {/*listTitle={this.state.listTitle}*/}
+                    {/*listSubtitle={this.state.listSubtitle}*/}
+                    {/*listDesc={this.state.listDescription}*/}
+                    {/*handleInputChange={this.handleInputChange}*/}
+                    {/*insertNewCard={this.insertNewCard}*/}
+                {/*/>*/}
             </div>
         );
     }

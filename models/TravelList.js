@@ -3,11 +3,11 @@ mongoose.set('debug', true);
 var Schema = mongoose.Schema;
 
 var travelistSchema = new Schema({
-    title: String,
-    subtitle: String,
-    description: String,
-    img: String,
-    tags:[],
+    listTitle: String,
+    listSubtitle: String,
+    listDescription: String,
+    listImg: String,
+    listTags:[],
     userID: String,
     userName: String,
     userIcon: String,

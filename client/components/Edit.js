@@ -98,6 +98,14 @@ class Edit extends Component {
         console.log(this.state.travelList);
     };
 
+    deletePlace = key => {
+        let _travelList = this.state.travelList;
+        _travelList.places.splice(key, 1);
+        this.setState({
+            travelList: _travelList
+        });
+    };
+
     fetchLocationDetails = (suggest,key) => {
         if(suggest)
         {
@@ -142,6 +150,7 @@ class Edit extends Component {
                             placeDescription={data.placeDescription}
                             placeName={data.placeName}
                             handleInputChangePlace={this.handleInputChangePlace}
+                            deletePlace={this.deletePlace}
                         />
                     )
                     : <p>No place to display</p>

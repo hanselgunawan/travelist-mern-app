@@ -12,15 +12,11 @@ app.use(express.static(path.join(__dirname, '../client')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-mongoose.connect('mongodb://heroku_fktz0ch2:q9i16ljmkfub1pegdsvj3rfai1@ds231758.mlab.com:31758/heroku_fktz0ch2');//setting and go to Config Variables
+// mongoose.connect('mongodb://heroku_fktz0ch2:q9i16ljmkfub1pegdsvj3rfai1@ds231758.mlab.com:31758/heroku_fktz0ch2');//setting and go to Config Variables
 
-// mongoose.connect('mongodb://localhost/travelist');
+mongoose.connect('mongodb://localhost/travelist');
 console.log(mongoose.connection.readyState);
 
 app.use('/', router);
-
-app.listen(port, function() {
-    console.log("App is running on port " + port);
-});
 
 module.exports=app;

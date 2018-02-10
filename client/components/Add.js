@@ -1,11 +1,23 @@
 import React, { Component } from 'react';
 import axios from "axios";
+import { Link } from 'react-router-dom'
+import {Button} from 'semantic-ui-react'
 import ListForm from './ListForm';
 import PlaceForm from './PlaceForm';
 import EditPlaceCard from './EditPlaceCard/EditPlaceCard';
 import EditTitleCard from './EditTitleCard/EditTitleCard';
+import "./add-form.css"
+import Header from './Header'
 var querystring = require('querystring');
 let myDate = new Date();
+
+import ReactMapboxGl, {Popup, Layer, Feature} from "react-mapbox-gl";
+import mapboxgl from 'mapbox-gl';
+import turf from 'turf';
+
+const Map = ReactMapboxGl({
+  accessToken: "pk.eyJ1IjoiYW5kcmVndW5hd2FuIiwiYSI6ImNqZDEyc3kwdDJkd24yeW5zOHNkN2owNmUifQ.jMGPgfB8vFmXclxuVHU1HQ"
+});
 
 const AddPlaceBtn = () => (
     <div class="add-card">
@@ -34,7 +46,8 @@ class Add extends Component {
             listIcon:"",
             places:[]
         },
-        geolocation:[]
+        geolocation:[],
+        locations: []
     };
 
     handleInputChangeList = event => {
@@ -111,10 +124,37 @@ class Add extends Component {
         };
         let myArr = this.state.travelList;
         myArr.places.push(placeObj);
-        this.setState({travelList: myArr});
+        this.setState({travelList: myArr})
+        this.setState({locations: [...this.state.locations, []]});
 
         // console.log(this.state.travelList);
     };
+
+    deletePlace(key){
+        let _travelList = this.state.travelList;
+        _travelList.places.splice(key, 1);
+        this.setState({
+            travelList: _travelList
+        });
+
+        let _loc = this.state.locations;
+        _loc.splice(key, 1);
+        this.setState({locations: _loc}, this.fitMap());
+    };
+
+    fitMap()
+    {
+        if (this.state.locations.length > 1){
+            let line = turf.lineString(this.state.locations);
+            let bbox = turf.bbox(line);
+            let bounds = [[bbox[0], bbox[1]], [bbox[2], bbox[3]]]; 
+            this.state.map.fitBounds(bounds, {padding: 120, offset: [250, 0]})
+        }
+        else if (this.state.locations.length == 1)
+        {
+            this.state.map.flyTo({center: this.state.locations[0], offset:[300, 0], zoom: 13})
+        }
+    }
 
     fetchLocationDetails = (suggest,key) => {
         if(suggest)
@@ -129,12 +169,20 @@ class Add extends Component {
                     this.setState({geolocation:res.data.result});
                     let myArr = this.state.travelList;
                     myArr.places[key].placeName = this.state.geolocation.name;
-                    myArr.places[key].placeLatitude = this.state.geolocation.geometry.location.lat;
-                    myArr.places[key].placeLongitude = this.state.geolocation.geometry.location.lng;
+                    myArr.places[key].placeLatitude = this.state.geolocation.geometry.location.lng;
+                    myArr.places[key].placeLongitude = this.state.geolocation.geometry.location.lat;
                     myArr.places[key].placeAddress = this.state.geolocation.formatted_address;
                     myArr.places[key].placePhone = this.state.geolocation.formatted_phone_number;
                     this.setState({travelList: myArr});
                     console.log(this.state.geolocation);
+
+                    let _locations = this.state.locations;
+                    _locations[key] = [this.state.geolocation.geometry.location.lng, this.state.geolocation.geometry.location.lat];
+                    this.setState({locations: _locations}, () => {
+                        console.log(this.state.locations);
+                        this.fitMap();
+                    });
+
                 })
                 .catch(err => console.log(err));
         }
@@ -142,8 +190,10 @@ class Add extends Component {
 
     render() {
         return (
-            <div className="container-fluid">
-                <EditTitleCard 
+            <div>
+            <Header />
+            <div className="container-fluid add-form-div">
+                <EditTitleCard
                     title={this.state.travelList.title}
                     subtitle={this.state.travelList.listSubtitle}
                     description={this.state.travelList.description}
@@ -160,12 +210,29 @@ class Add extends Component {
                         placeTitle={data.placeTitle}
                         placeDescription={data.placeDescription}
                         handleInputChangePlace={this.handleInputChangePlace}
-                        handleInputImageChange={this.handleInputImageChange.bind(this)} />
+                        handleInputImageChange={this.handleInputImageChange.bind(this)} 
+                        deletePlace={this.deletePlace.bind(this)}/>
                     )
-                    : <p>No place to display</p>
+                    : null
                 }
-                <button onClick={this.addNewPlace}>Add Place</button>
-                <button onClick={this.insertNewCard}>Save</button>
+
+                <Button.Group fluid size="huge" className="add-btn-div">
+                    <Button onClick={this.addNewPlace}>Add Place</Button>
+                    <Button onClick={this.insertNewCard}><Link to="/">Save List </Link></Button> 
+                </Button.Group>
+
+            </div>
+            <Map style="mapbox://styles/andregunawan/cjdflzkfd13bl2rsf762f8bi2" containerStyle={{height: "100vh",width: "100vw"}} onStyleLoad={(map) => {this.setState({map: map}); map.loadImage("https://cdn.iconscout.com/public/images/icon/free/png-512/pin-locate-marker-location-navigation-383aa35b87c3e671-512x512.png", (err, img) => {map.addImage('pinnn', img);})}}>
+                    <Layer 
+                        type="symbol"
+                        id="marker"
+                        layout={{ "icon-image": 'pinnn', 'icon-size': 0.1, 'text-allow-overlap': true, 'icon-allow-overlap': true
+                            }}>
+                        {this.state.locations.length > 0 ? this.state.locations.map(v => (
+                            <Feature coordinates={v}/>
+                        )) : null}
+                    </Layer>
+            </Map>
             </div>
         );
     }

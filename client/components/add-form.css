@@ -1,0 +1,23 @@
+.add-form-div{
+	z-index: 3 !important;
+	position: absolute !important;
+	overflow-y: scroll;
+	height: 100vh;
+	width: 430px;
+	padding: 0 !important;
+	overflow-x: hidden;
+}
+
+.add-btn-div{
+	padding: 15px;
+}
+
+.title-card-form{
+	margin-bottom: 0px !important;
+	padding-top: 30px;
+}
+
+.place-card-form{
+	margin-bottom: 0px !important;
+	margin-top: 15px !important;
+}

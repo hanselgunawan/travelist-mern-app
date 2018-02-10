@@ -4,6 +4,7 @@ import { Button, Card, Icon, Label, Reveal, Image} from 'semantic-ui-react';
 import mapboxgl from 'mapbox-gl';
 import axios from 'axios'
 import './App.css';
+import Header from './Header'
 import List from './List/List';
 import turf from 'turf';
 
@@ -23,7 +24,7 @@ class ListView extends Component {
 			activePlace: null,
 			baseZoom: 10,
 			listData: {
-	  				title: "Fake",
+	  				title: "22 Places to Really Have Fun",
 	  				subtitle: "From classic to new school, the best places to get burgers in Los Angeles",
 	  				description: "Hamburgers are truly America's food, born of the country's fascination with beef amidst the 1950's commoditization of farming. Those same mid-century decades also spawned the rise of the nation's modern highway systems and LA's fast food culture in general, making the lowly hamburger something to be sought out as a destination or grabbed quickly on the way home. There's also no convenient diagram for what makes a perfect Los Angeles burger. Some hew close to the Southern California standard, with thin griddled patties, fresh toppings, American cheese, and a slightly tangy spread. Others stack multiple massive patties together for a bit of primal indulgence, while still more trade in mayonnaise for foie gras-inflected bordelaise sauce. Here now, the essential Los Angeles burgers.",
 	  				img: "https://cdn.vox-cdn.com/thumbor/RYhXk8-Iz0uuqSy8WRO7Xmaaujo=/0x0:2000x1335/620x465/filters:focal(797x574:1117x894):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/56759467/2017_09_19_oinkster_015.1505855774.jpg",
@@ -139,6 +140,7 @@ class ListView extends Component {
 	render() {
 		return (
 			<div>
+				<Header />
 				<List data={this.state.listData} setActivePlace={this.setActivePlace.bind(this)} placeHover={this.placeHover.bind(this)} titleHover={this.titleHover.bind(this)}/>
 				<Map fitBounds={this.state.bounds} fitBoundsOptions={{padding: 100, offset:[300, 0]}} style="mapbox://styles/andregunawan/cjdflzkfd13bl2rsf762f8bi2" containerStyle={{height: "100vh",width: "100vw"}} onStyleLoad={(map) => {this.setState({map: map}); map.loadImage("https://cdn.iconscout.com/public/images/icon/free/png-512/pin-locate-marker-location-navigation-383aa35b87c3e671-512x512.png", (err, img) => {map.addImage('pinnn', img);})}}>
 		  			<Layer 

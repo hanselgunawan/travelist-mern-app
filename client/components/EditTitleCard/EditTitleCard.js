@@ -27,7 +27,7 @@ class EditTitleCard extends React.Component {
 
   render(){
     return (
-      <div class="card-size">
+      <div class="card-size title-card-form">
        <div class="fluid ui card">
         <div class="content">
           <div class="header"><Icon name="write" size="small"/> Title </div>

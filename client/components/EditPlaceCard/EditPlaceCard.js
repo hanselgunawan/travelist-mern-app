@@ -28,10 +28,12 @@ class EditPlaceCard extends React.Component {
 
   render(){
     return (
-      <div className="card-size">
+      <div className="card-size place-card-form">
    <div className="fluid ui card">
     <div className="content">
-      <div className="header"><Icon name="write" size="small"/> Place {this.props.place_index} </div>
+      <div className="header">
+      <Icon name="write" size="small"/> Place 
+      </div>
     </div>
     <div className="content">
         <div className="ui form">
@@ -59,6 +61,8 @@ class EditPlaceCard extends React.Component {
           <textarea className="no-show" placeholder="Image Links" type="text" name="placeImage"
                            value={this.state.imageURLs.length > 0 ? this.state.imageURLs.reduce(makeIntoString) : ""}
                            onChange={(e) => this.props.handleInputChangePlace(e, this.props.placeId)}/>
+        
+          <Button className="center aligned" onClick={() => {this.props.deletePlace()}}> <Icon name="trash"/> Delete Place </Button>
         </div>
     </div>
   </div>

@@ -2,21 +2,37 @@ import React from "react";
 import SearchBar from "./SearchBar/SearchBar";
 import DropdownCity from "./DropdownCity/DropdownCity";
 import LoginNav from "./LoginNav/LoginNav";
+import "./Header.css"
+import { Link } from 'react-router-dom';
+import { Button, Card, Icon, Image, Label} from 'semantic-ui-react';
 
 let textCenter = {
-    textAlign:"center"
+    textAlign:"center",
+    marginTop:10
 };
 
 let logoStyle = {
-    fontSize:40
+    fontSize:40,
+    color:"black"
 };
 
 let marginTop = {
-    marginTop:10
+    marginTop:8
 };
 
 let navStyle = {
     height:60
+};
+
+let plusButton = {
+    marginTop:8,
+    fontSize:25,
+    borderRadius:50,
+    color:"black",
+    borderWidth:1,
+    borderColor:"black",
+    borderStyle:"solid",
+    textAlign:"center"
 };
 
 const Header = () =>
@@ -25,7 +41,7 @@ const Header = () =>
             <div className="row">
                 <div className="col-lg-2">
                     <div className="navbar-header" style={textCenter}>
-                        <a className="navbar-brand" style={logoStyle}>LOGO</a>
+                        <Link to="/" className="navbar-brand" style={logoStyle}>LISTO</Link>
                     </div>
                 </div>
                 <div className="col-lg-9" style={marginTop}>
@@ -34,7 +50,7 @@ const Header = () =>
                 <div className="col-lg-1">
                     {/*<DropdownCity />*/}
                     <ul className="nav navbar-nav navbar-right">
-                        <LoginNav />
+                        <Link to="/add" style={{marginTop:7}}><Button content='New List' primary /></Link>
                     </ul>
                 </div>
             </div>

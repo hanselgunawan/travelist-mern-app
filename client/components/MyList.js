@@ -64,14 +64,10 @@ class MyList extends Component {
     render() {
         return (
             <div>
-            <Header />
             <div className="myList" >
                 { this.state.travelList !== null ? this.state.travelList.map((data, key) =>
                     <div id={"list-"+data._id} onMouseOver={() => {this.listHover(key)}} className="card-size title-card">
                         <div className="fluid ui card orange">
-                            <div className="content header">
-                                <div className="header"><Icon name={data.userIcon} size="small"/> {data.listCategory} </div>
-                            </div>
                             <div className="content">
                                 <div className="details">
                                     <h1 className="heading title-heading">{data.title}</h1>
@@ -103,7 +99,7 @@ class MyList extends Component {
                     <Layer 
                         type="symbol"
                         id="marker"
-                        layout={{ "icon-image": 'pinnn', 'icon-size': 0.075, 'text-allow-overlap': true, 'icon-allow-overlap': true
+                        layout={{ "icon-image": 'pinnn', 'icon-size': 0.1, 'text-allow-overlap': true, 'icon-allow-overlap': true
                             }}>
                         {this.state.coords_arr.length > 0 ? this.state.coords_arr[this.state.activeList].map(v => (
                             <Feature coordinates={v}/>

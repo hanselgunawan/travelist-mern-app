@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 
 const TitleCard = (props) => (
-<div className="card-size title-card">
+<div className="card-size" style={{'margin-top': '15px'}}>
    <div className="fluid ui card orange">
     <div className="content header">
     <div className="header"><Icon name={props.ListIcon} size="small"/> {props.ListCategory} </div>

@@ -17,6 +17,7 @@ class App extends Component {
     render() {
         return (
             <div>
+                <Header />
                 <MyList />
                 {/*<ListView list_id="5a7ecb3e966c124ef97d5bf6"/>*/}
                 {/*<ListView list_id='5a7eaa7b966c124ef97d5bf4'/>*/}

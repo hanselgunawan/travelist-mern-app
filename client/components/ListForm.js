@@ -6,14 +6,14 @@ const ListForm = props =>
     <div className="col-lg-6">
         <Form>
             <Form.Field>
-                <label>First Name</label>
+                <label>Title</label>
                 <input placeholder="Title"
                        name="listTitle"
                        value={props.listTitle}
                        onChange={props.handleInputChangeList} />
             </Form.Field>
             <Form.Field>
-                <label>Last Name</label>
+                <label>Subtitle</label>
                 <input placeholder="Subtitle"
                        name="listSubtitle"
                        value={props.listSubtitle}

@@ -6,6 +6,9 @@ var querystring = require('querystring');
 let myDate = new Date();
 
 class Edit extends Component {
+    constructor(props) {
+        super(props);
+    }
     state = {
         travelList:{
             listTitle: "",
@@ -30,7 +33,7 @@ class Edit extends Component {
     }
 
     fetchTravelList = () => {
-        axios.get("/getAll/5a7d7ab24b1d00d79aababf3")
+        axios.get("/getAll/"+this.props.match.params.listID+"")
             .then( res => {
                 this.setState({ travelList:res.data[0] });
                 console.log(res.data[0]);
@@ -70,7 +73,7 @@ class Edit extends Component {
 
     updateList = () => {
         let myDate = new Date();
-        axios.post("/update/5a7d7ab24b1d00d79aababf3",
+        axios.post("/update/"+this.props.match.params.listID+"",
             JSON.stringify(this.state.travelList), {
                 headers: {
                     "Content-Type": "application/json"

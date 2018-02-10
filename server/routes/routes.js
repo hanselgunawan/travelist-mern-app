@@ -76,4 +76,12 @@ router.get('/getAll/:listID', function (req,res) {
     });
 });
 
+router.get('/getAllList/:userID', function (req,res) {
+    let ObjectId = mongojs.ObjectID;
+    Travel.find({userID:req.params.userID}, function (err, result) {
+        if(err) res.send(err);
+        res.json(result);
+    });
+});
+
 module.exports = router;

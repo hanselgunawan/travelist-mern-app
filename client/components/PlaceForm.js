@@ -27,7 +27,9 @@ const PlaceForm = props =>
                         placeName={props.placeName}
                     />
                 </Form.Field>
-                <button onClick={props.deletePlace.bind(null, props.placeId)}>Delete</button>
+                {
+                    props.deletePlace ? <button onClick={props.deletePlace.bind(null, props.placeId)}>Delete</button> : ""
+                }
             </Form>
         </div>
     </div>

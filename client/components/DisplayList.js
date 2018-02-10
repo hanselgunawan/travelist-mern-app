@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-import { Link, Switch, Route } from 'react-router-dom'
+import { Link, Switch, Route, BrowserRouter } from 'react-router-dom'
 import Header from './Header';
 import axios from "axios";
 import Geolocation from './Geolocation';
 import TestForm from './TestForm';
 import Add from './Add';
 import Edit from './Edit';
-import DisplayList from './DisplayList';
 var querystring = require('querystring');
 
-class App extends Component {
+class DisplayList extends Component {
     state = {
         travelList:{
             listTitle: "",
@@ -42,35 +41,22 @@ class App extends Component {
             .catch(err => console.log(err));
     };
 
-    changeEditStatus = () => {
-        this.setState({
-            edit:true
-        });
-    };
-
     render() {
         return (
             <div>
-                <DisplayList />
-                {/*<Edit />*/}
-                {/*<Add />*/}
-                {/*<Header/>*/}
-                {/*<Geolocation*/}
-                    {/*fetchLocationDetails={this.fetchLocationDetails}*/}
-                {/*/>*/}
-                {/*<ListSidebar*/}
-                    {/*travelList={this.state.travelList}*/}
-                {/*/>*/}
-                {/*<TestForm*/}
-                    {/*listTitle={this.state.listTitle}*/}
-                    {/*listSubtitle={this.state.listSubtitle}*/}
-                    {/*listDesc={this.state.listDescription}*/}
-                    {/*handleInputChange={this.handleInputChange}*/}
-                    {/*insertNewCard={this.insertNewCard}*/}
-                {/*/>*/}
+                { this.state.travelList.length>0
+                    ? this.state.travelList.map((data, key) =>
+                        <div>
+                            <p>{key+1}</p>
+                            <Link to="/add">Add</Link>
+                            <Link to={`/edit/${data._id}`}>Edit</Link>
+                        </div>
+                    )
+                    : <p>No list to display</p>
+                }
             </div>
         );
     }
 }
 
-export default App;
+export default DisplayList;

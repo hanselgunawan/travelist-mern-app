@@ -1,0 +1,13 @@
+.dropzone{
+	background-position: center;
+	background-size: 200px;
+}
+
+.muted{
+	color: #e0e0e0;
+}
+
+.drag{
+	background-color: grey;
+}
+

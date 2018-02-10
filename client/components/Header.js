@@ -28,11 +28,11 @@ const Header = () =>
                         <a className="navbar-brand" style={logoStyle}>LOGO</a>
                     </div>
                 </div>
-                <div className="col-lg-7" style={marginTop}>
+                <div className="col-lg-9" style={marginTop}>
                     <SearchBar />
                 </div>
-                <div className="col-lg-3">
-                    <DropdownCity />
+                <div className="col-lg-1">
+                    {/*<DropdownCity />*/}
                     <ul className="nav navbar-nav navbar-right">
                         <LoginNav />
                     </ul>

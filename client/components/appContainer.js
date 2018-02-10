@@ -7,51 +7,19 @@ import TestForm from './TestForm';
 import Add from './Add';
 import Edit from './Edit';
 import DisplayList from './DisplayList';
+import EditListView from './EditListView';
+import ListView from './ListView'
+import MyList from './MyList';
+
 var querystring = require('querystring');
 
 class App extends Component {
-    state = {
-        travelList:{
-            listTitle: "",
-            listSubtitle: "",
-            listDescription: "",
-            listImg: "",
-            listTags:[],
-            userID:"1",
-            userName:"Hansel",
-            userIcon:"",
-            publishedDate: "",
-            lastUpdated: "",
-            listCategory:"",
-            listIcon:"",
-            places:[]
-        },
-        edit:false
-    };
-
-    componentDidMount() {
-        this.fetchTravelList();
-    }
-
-    fetchTravelList = () => {
-        axios.get("/getAllList/1")
-            .then( res => {
-                this.setState({ travelList:res.data });
-                console.log(this.state.travelList);
-            })
-            .catch(err => console.log(err));
-    };
-
-    changeEditStatus = () => {
-        this.setState({
-            edit:true
-        });
-    };
-
     render() {
         return (
             <div>
-                <DisplayList />
+                <MyList />
+                {/*<ListView list_id="5a7ecb3e966c124ef97d5bf6"/>*/}
+                {/*<ListView list_id='5a7eaa7b966c124ef97d5bf4'/>*/}
                 {/*<Edit />*/}
                 {/*<Add />*/}
                 {/*<Header/>*/}

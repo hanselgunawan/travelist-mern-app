@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css?family=Francois+One|Overpass:300,300i,700');
+
+.card-size{
+	min-width: 400px;
+	width: 30%;
+}
+
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+
+  > .col,
+  > [class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+
+.placetitle {
+	font-size: 1.8em;
+	font-family: 'Francois One';
+	margin-bottom: -20px;
+}
+
+h2 {
+	font-size: 1.2em;
+	font-family: 'Overpass';
+}
+
+h3 {
+	font-size: 1.1em;
+	font-family: 'Overpass';
+	font-weight: 300;
+}
+
+p {
+	font-size: 1em;
+	font-family: 'Overpass';
+	font-weight: 300;
+}
+
+.ui.card>.content p, .ui.cards>.card>.content p {
+    margin: 0 0 0;
+}
+
+.details{
+	font-size: 0.8em;
+	font-family: 'Overpass';
+
+}
+
+.pin-icon{
+ margin-left: 20px;
+ margin-right: 40px;
+}
+
+.center-parent {
+  position: relative;
+}
+.center-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

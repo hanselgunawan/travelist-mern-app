@@ -9,11 +9,11 @@ router.get('/', function(req, res){
 
 router.route('/insert').post(function (req, res) {
     let travel = new Travel();
-    travel.listTitle=req.body.listTitle;
-    travel.listSubtitle=req.body.listSubtitle;
-    travel.listDescription=req.body.listDescription;
-    travel.listImg=req.body.listImg;
-    travel.listTags=req.body.listTags;
+    travel.title=req.body.title;
+    travel.subtitle=req.body.subtitle;
+    travel.description=req.body.description;
+    travel.img=req.body.img;
+    travel.tags=req.body.tags;
     travel.userID=req.body.userID;
     travel.userName=req.body.userName;
     travel.userIcon=req.body.userIcon;
@@ -23,7 +23,7 @@ router.route('/insert').post(function (req, res) {
     travel.listIcon=req.body.listIcon;
     travel.places=req.body.places;
 
-    Travel.find({title: req.body.listTitle}, function (error, result) {
+    Travel.find({title: req.body.title}, function (error, result) {
         if(!result.length)
         {
             travel.save(function (err) {
@@ -38,11 +38,11 @@ router.route('/update/:key').post(function (req, res) {
     let listID = req.params.key;
     const doc = {
         mylist:listID,
-        listTitle:req.body.listTitle,
-        listSubtitle:req.body.listSubtitle,
-        listDescription:req.body.listDescription,
-        listImg:req.body.listImg,
-        listTags:req.body.listTags,
+        title:req.body.title,
+        subtitle:req.body.subtitle,
+        description:req.body.description,
+        img:req.body.img,
+        tags:req.body.tags,
         userID:req.body.userID,
         userName:req.body.userName,
         userIcon:req.body.userIcon,

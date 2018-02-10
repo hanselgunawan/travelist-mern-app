@@ -3,11 +3,11 @@ mongoose.set('debug', true);
 var Schema = mongoose.Schema;
 
 var travelistSchema = new Schema({
-    listTitle: String,
-    listSubtitle: String,
-    listDescription: String,
-    listImg: String,
-    listTags:[],
+    title: String,
+    subtitle: String,
+    description: String,
+    img: String,
+    tags:[],
     userID: String,
     userName: String,
     userIcon: String,
@@ -21,8 +21,8 @@ var travelistSchema = new Schema({
             placeDescription: String,
             placeName: String,
             placeLocation: String,
-            placeLongitude: String,
-            placeLatitude: String,
+            placeLongitude: Number,
+            placeLatitude: Number,
             placeAddress: String,
             placePhone: String,
             placeImage: []

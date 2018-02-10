@@ -49,7 +49,7 @@ class DisplayList extends Component {
                         <div>
                             <p>{key+1}</p>
                             <Link to="/add">Add</Link>
-                            <Link to={`/edit/${data._id}`}>Edit</Link>
+                            <Link to={`/roster/${data.number}`}>Edit</Link>
                         </div>
                     )
                     : <p>No list to display</p>

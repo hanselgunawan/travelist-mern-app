@@ -2,17 +2,29 @@ import React, { Component } from 'react';
 import axios from "axios";
 import ListForm from './ListForm';
 import PlaceForm from './PlaceForm';
+import EditPlaceCard from './EditPlaceCard/EditPlaceCard';
+import EditTitleCard from './EditTitleCard/EditTitleCard';
 var querystring = require('querystring');
 let myDate = new Date();
+
+const AddPlaceBtn = () => (
+    <div class="add-card">
+        <div class="ui fluid link card add-card">
+            <div class="content">
+                <h1 class="header center aligned">Add Card</h1>
+            </div>
+        </div>
+    </div>
+ )
 
 class Add extends Component {
     state = {
         travelList:{
-            listTitle: "",
-            listSubtitle: "",
-            listDescription: "",
-            listImg: "",
-            listTags:[],
+            title: "",
+            subtitle: "",
+            description: "",
+            img: "",
+            tags:[],
             userID:"1",
             userName:"Hansel",
             userIcon:"",
@@ -33,26 +45,45 @@ class Add extends Component {
         this.setState({
             travelListObj
         });
-        console.log("List Title: " + this.state.travelList.listTitle);
-        console.log("List Subtitle: " + this.state.travelList.listSubtitle);
-        console.log("List Description: " + this.state.travelList.listDescription);
+        // console.log("List Title: " + this.state.travelList.listTitle);
+        // console.log("List Subtitle: " + this.state.travelList.listSubtitle);
+        // console.log("List Description: " + this.state.travelList.listDescription);
     };
+
+    handleInputImageChange(key, img_arr)
+    {
+        const _travelList = this.state.travelList;
+        _travelList.places[key].placeImage = img_arr;
+        this.setState({"travelList": _travelList}, () => {
+            console.log(this.state.travelList.places)
+        });
+    }
+
+    handleInputImageChange2(img)
+    {
+        const _travelList = this.state.travelList;
+        _travelList.img = img;
+        this.setState({"travelList": _travelList}, () => {
+            console.log(this.state.travelList.img)
+        });
+    }
 
     handleInputChangePlace = (event, key) => {
             const travelPlaceObj = this.state.travelList.places;
             let name = event.target.name;
             let value = event.target.value;
             travelPlaceObj[key][name] = value;
+            console.log(event.target.value);
             this.setState({
                 travelPlaceObj
             });
-            console.log("Place Title: " + this.state.travelList.places[key].placeTitle);
-            console.log("Place Description: " + this.state.travelList.places[key].placeDescription);
-            console.log("Place Name: " + this.state.travelList.places[key].placeName);
-            console.log("Place Latitude: " + this.state.travelList.places[key].placeLatitude);
-            console.log("Place Longitude: " + this.state.travelList.places[key].placeLongitude);
-            console.log("Place Address: " + this.state.travelList.places[key].placeAddress);
-            console.log("Place Phone: " + this.state.travelList.places[key].placePhone);
+            // console.log("Place Title: " + this.state.travelList.places[key].placeTitle);
+            // console.log("Place Description: " + this.state.travelList.places[key].placeDescription);
+            // console.log("Place Name: " + this.state.travelList.places[key].placeName);
+            // console.log("Place Latitude: " + this.state.travelList.places[key].placeLatitude);
+            // console.log("Place Longitude: " + this.state.travelList.places[key].placeLongitude);
+            // console.log("Place Address: " + this.state.travelList.places[key].placeAddress);
+            // console.log("Place Phone: " + this.state.travelList.places[key].placePhone);
     };
 
     insertNewCard = () => {
@@ -63,7 +94,7 @@ class Add extends Component {
                     "Content-Type": "application/json"
                 }
             }).then(function (response) {
-            console.log(response);
+            // console.log(response);
         });
     };
 
@@ -82,7 +113,7 @@ class Add extends Component {
         myArr.places.push(placeObj);
         this.setState({travelList: myArr});
 
-        console.log(this.state.travelList);
+        // console.log(this.state.travelList);
     };
 
     fetchLocationDetails = (suggest,key) => {
@@ -112,23 +143,24 @@ class Add extends Component {
     render() {
         return (
             <div className="container-fluid">
-                <ListForm
-                    listTitle={this.state.travelList.listTitle}
-                    listSubtitle={this.state.travelList.listSubtitle}
-                    listDescription={this.state.travelList.listDescription}
-                    listImg={this.state.travelList.listImg}
-                    listCategory={this.state.travelList.listCategory}
+                <EditTitleCard 
+                    title={this.state.travelList.title}
+                    subtitle={this.state.travelList.listSubtitle}
+                    description={this.state.travelList.description}
+                    img={this.state.travelList.img}
+                    category={this.state.travelList.category}
                     handleInputChangeList={this.handleInputChangeList}
-                />
+                    handleInputImageChange={this.handleInputImageChange2.bind(this)}/>
+
                 { this.state.travelList.places.length>0
                     ? this.state.travelList.places.map((data, key) =>
-                    <PlaceForm
+                    <EditPlaceCard 
                         fetchLocationDetails={this.fetchLocationDetails}
                         placeId={key}
                         placeTitle={data.placeTitle}
                         placeDescription={data.placeDescription}
                         handleInputChangePlace={this.handleInputChangePlace}
-                    />
+                        handleInputImageChange={this.handleInputImageChange.bind(this)} />
                     )
                     : <p>No place to display</p>
                 }

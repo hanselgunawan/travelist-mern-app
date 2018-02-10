@@ -1,0 +1,17 @@
+.carousel-item{
+	height: 300px;
+	overflow-y: hidden;
+}
+
+.carousel-item img{
+	border-radius: 0px !important;
+}
+
+.carousel-image{
+	min-height: 300px;
+	width: auto;
+}
+
+.hidden{
+	visibility: hidden;
+}

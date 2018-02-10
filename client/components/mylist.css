@@ -1,0 +1,9 @@
+.myList{
+	z-index: 3 !important;
+	position: absolute !important;
+	overflow-y: scroll;
+	height: 100vh;
+	width: 430px;
+	padding: 0 !important;
+	overflow-x: hidden;
+};

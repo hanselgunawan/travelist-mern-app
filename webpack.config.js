@@ -13,7 +13,7 @@ module.exports = {
             loader: 'babel-loader',
             exclude: /(node_modules|bower_components)/,
             query: {
-                presets: ['react']
+                presets: ['es2015', 'stage-0', 'react', { "modules": false }]
                 }
             },
             {

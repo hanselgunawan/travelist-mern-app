@@ -18,5 +18,4 @@ mongoose.connect('mongodb://heroku_fktz0ch2:q9i16ljmkfub1pegdsvj3rfai1@ds231758.
 console.log(mongoose.connection.readyState);
 
 app.use('/', router);
-
 module.exports=app;

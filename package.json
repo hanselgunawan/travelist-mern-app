@@ -6,6 +6,7 @@
     "@turf/turf": "^5.1.6",
     "axios": "^0.17.1",
     "babel-cli": "^6.26.0",
+    "babel-preset-stage-2": "^6.24.1",
     "body-parser": "^1.18.2",
     "bootstrap": "^4.0.0",
     "ejs": "^2.5.7",

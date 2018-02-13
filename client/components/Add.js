@@ -159,14 +159,8 @@ class Add extends Component {
     fetchLocationDetails = (suggest,key) => {
         if(suggest)
         {
-            console.log("https://maps.googleapis.com/maps/api/place/details/json?placeid="+suggest.placeId+"&key=AIzaSyAZ-CwVxjEd2hGyIKbXzgx9A7ZdowjuYFI");
-            axios.get("https://maps.googleapis.com/maps/api/place/details/json?placeid="+suggest.placeId+"&key=AIzaSyAZ-CwVxjEd2hGyIKbXzgx9A7ZdowjuYFI", {
-                headers: {
-                    'Access-Control-Allow-Origin': 'https://dry-chamber-76409.herokuapp.com',
-                    'Access-Control-Allow-Credentials': 'true',
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }
-            })
+            console.log("https://maps.googleapis.com/maps/api/place/details/json?placeid="+suggest.placeId+"&key=AIzaSyAeToo6vapEqsV-wm4UcDLaA0CwiVEHpVs");
+            axios.get("https://maps.googleapis.com/maps/api/place/details/json?placeid="+suggest.placeId+"&key=AIzaSyAeToo6vapEqsV-wm4UcDLaA0CwiVEHpVs")
                 .then(res => {
                     this.setState({geolocation:res.data.result});
                     let myArr = this.state.travelList;

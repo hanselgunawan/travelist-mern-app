@@ -164,7 +164,7 @@ class Add extends Component {
                 headers: {
                     'Access-Control-Allow-Origin': 'https://dry-chamber-76409.herokuapp.com',
                     'Access-Control-Allow-Credentials': 'true',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 }
             })
                 .then(res => {

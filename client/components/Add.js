@@ -160,11 +160,7 @@ class Add extends Component {
         if(suggest)
         {
             console.log("https://maps.googleapis.com/maps/api/place/details/json?placeid="+suggest.placeId+"&key=AIzaSyAZ-CwVxjEd2hGyIKbXzgx9A7ZdowjuYFI");
-            axios.get("https://maps.googleapis.com/maps/api/place/details/json?placeid="+suggest.placeId+"&key=AIzaSyAZ-CwVxjEd2hGyIKbXzgx9A7ZdowjuYFI", {
-                headers: {
-                    'Access-Control-Allow-Origin': '*',
-                }
-            })
+            axios.get("https://maps.googleapis.com/maps/api/place/details/json?placeid="+suggest.placeId+"&key=AIzaSyAZ-CwVxjEd2hGyIKbXzgx9A7ZdowjuYFI")
                 .then(res => {
                     this.setState({geolocation:res.data.result});
                     let myArr = this.state.travelList;

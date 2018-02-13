@@ -162,10 +162,7 @@ class Add extends Component {
             console.log("https://maps.googleapis.com/maps/api/place/details/json?placeid="+suggest.placeId+"&key=AIzaSyAZ-CwVxjEd2hGyIKbXzgx9A7ZdowjuYFI");
             axios.get("https://maps.googleapis.com/maps/api/place/details/json?placeid="+suggest.placeId+"&key=AIzaSyAZ-CwVxjEd2hGyIKbXzgx9A7ZdowjuYFI", {
                 headers: {
-                    'Access-Control-Allow-Origin': 'https://dry-chamber-76409.herokuapp.com',
-                    'Access-Control-Allow-Credentials': 'true',
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'Authentication': ''
+                    "Access-Control-Allow-Origin": "*"
                 }
             })
                 .then(res => {

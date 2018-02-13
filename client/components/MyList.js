@@ -9,7 +9,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import Header from './Header'
 import ListForm from './ListForm';
 import PlaceForm from './PlaceForm';
-import './myList.css'
+import './mylist.css'
 var querystring = require('querystring');
 
 

@@ -8,6 +8,7 @@ import EditPlaceCard from './EditPlaceCard/EditPlaceCard';
 import EditTitleCard from './EditTitleCard/EditTitleCard';
 import "./add-form.css"
 import Header from './Header'
+import API from "../utils/API";
 var querystring = require('querystring');
 let myDate = new Date();
 
@@ -159,13 +160,9 @@ class Add extends Component {
     fetchLocationDetails = (suggest,key) => {
         if(suggest)
         {
-            console.log("https://maps.googleapis.com/maps/api/place/details/json?placeid="+suggest.placeId+"&key=AIzaSyAZ-CwVxjEd2hGyIKbXzgx9A7ZdowjuYFI");
-            axios.get("https://maps.googleapis.com/maps/api/place/details/json?placeid="+suggest.placeId+"&key=AIzaSyAZ-CwVxjEd2hGyIKbXzgx9A7ZdowjuYFI", {
-                headers: {
-                    "Access-Control-Allow-Origin": "*"
-                }
-            })
-                .then(res => {
+            //console.log("http://maps.googleapis.com/maps/api/place/details/json?placeid="+suggest.placeId+"&key=AIzaSyAZ-CwVxjEd2hGyIKbXzgx9A7ZdowjuYFI");
+            axios.get("/getPlace/" + suggest.placeId)
+                .then( res => {
                     this.setState({geolocation:res.data.result});
                     let myArr = this.state.travelList;
                     myArr.places[key].placeName = this.state.geolocation.name;
@@ -182,7 +179,6 @@ class Add extends Component {
                         console.log(this.state.locations);
                         this.fitMap();
                     });
-
                 })
                 .catch(err => console.log(err));
         }

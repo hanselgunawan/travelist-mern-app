@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongojs = require("mongojs");
+var request = require("request");
 var Travel = require('../../models/TravelList');
 
 router.get('/', function(req, res){
@@ -65,6 +66,13 @@ router.get('/delete', function (req,res) {
     Travel.find({_id:id}).remove().exec(function (err, nyt) {
         if(err) res.send(err);
         res.send('List successfully deleted!');
+    });
+});
+
+router.get('/getPlace/:placeID', function (req, res) {
+    var place_id = req.params.placeID;
+    request("https://maps.googleapis.com/maps/api/place/details/json?placeid="+place_id+"&key=AIzaSyAZ-CwVxjEd2hGyIKbXzgx9A7ZdowjuYFI", function (error, response, body) {
+        res.send(body);//it returns the object
     });
 });
 
